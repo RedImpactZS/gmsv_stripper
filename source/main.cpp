@@ -58,8 +58,9 @@ GMOD_MODULE_OPEN()
 GMOD_MODULE_CLOSE( )
 {
 
-    StripperProxy::Deinitialize();
-    StripperLua::Deinitialize(LUA);
+    if (StripperLua::Deinitialize(LUA)) {
+        StripperProxy::Deinitialize();
+    }
 
     Msg("[gmsv_stripper] Module close acknowledged\n");
 
