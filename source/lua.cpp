@@ -22,7 +22,6 @@ namespace StripperLua {
 
     static const char *tablename = "stripper";
 
-
     LUA_FUNCTION_STATIC( GetOriginalMapEntities ) {
 
         if (StripperSupport::originalMapEntities != nullptr) {
@@ -45,7 +44,7 @@ namespace StripperLua {
         return 1;
     }
 
-    void Initialize(ILuaBase* LUA){
+    int Initialize(ILuaBase* LUA) {
 
         LUA->CreateTable( );
 
@@ -64,8 +63,10 @@ namespace StripperLua {
 
         LUA->SetField( GarrysMod::Lua::INDEX_GLOBAL, tablename );
 
-
+        return 0;
     }
 
-    void Uninitialize(ILuaBase* LUA){} 
+    int Deinitialize(ILuaBase* LUA){
+        return 0;
+    }
 }

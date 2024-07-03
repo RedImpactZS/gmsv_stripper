@@ -16,7 +16,7 @@
 
 namespace StripperProxy {
     extern int Initialize();
-    extern void Uninitialize();
+    extern int Deinitialize();
 };
 
 #endif /* _INCLUDE_STRIPPER_PROXY_H_ */

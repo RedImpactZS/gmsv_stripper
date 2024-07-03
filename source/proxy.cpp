@@ -100,5 +100,11 @@ namespace StripperProxy {
         return 0;
     }
 
-    void Uninitialize(){}
+    int Deinitialize(){
+        engine_proxy.reset();
+        gamedll_proxy.reset();
+        Msg("[gmsv_stripper] Proxies unloaded\n");
+
+        return 0;
+    }
 }

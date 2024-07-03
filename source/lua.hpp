@@ -24,8 +24,8 @@ namespace GarrysMod
 
 namespace StripperLua {
 
-    extern void Initialize(GarrysMod::Lua::ILuaBase* LUA);
-    extern void Uninitialize(GarrysMod::Lua::ILuaBase* LUA);
+    extern int Initialize(GarrysMod::Lua::ILuaBase* LUA);
+    extern int Deinitialize(GarrysMod::Lua::ILuaBase* LUA);
 
 };
 
