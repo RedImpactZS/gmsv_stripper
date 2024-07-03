@@ -1,5 +1,5 @@
 /** vim: set ts=4 sw=4 et tw=99:
- * 
+ *
  * === Stripper for Metamod:Source ===
  * Copyright (C) 2005-2009 David "BAILOPAN" Anderson
  * No warranties of any kind.
@@ -9,14 +9,16 @@
  * ===================================
  */
 
-#include "pcre.h"
-#include "parser.h"
-#include "support.h"
+#include <cctype>
+#include <cstring>
 
 #include <platform.h>
 
-#include <cctype>
-#include <cstring>
+#include <GarrysMod/Lua/Interface.h>
+
+#include <pcre.h>
+
+#include "parser.hpp"
 
 void f_strncpy_s(char *dest, const char *str, size_t n)
 {
@@ -567,7 +569,7 @@ void Stripper::ApplyFileFilter(const char *file)
     {
         line++;
         buffer[0] = '\0';
-        fgets(buffer, sizeof(buffer)-1, fp);
+        (void)!fgets(buffer, sizeof(buffer)-1, fp);
         //strip whitespace
         UTIL_TrimRight(buffer);
         UTIL_TrimLeft(buffer);
@@ -678,7 +680,7 @@ void Stripper::ApplyFileFilter(const char *file)
             int rc = pcre_exec(brk_re, brk_re_extra, buffer, len, 0, 0, ovector, 30);
             if (rc >= 3)
             {
-                size_t len = ovector[3] - ovector[2];
+                len = ovector[3] - ovector[2];
                 if (len > _keysize)
                 {
                     delete [] _key;
@@ -703,8 +705,8 @@ void Stripper::ApplyFileFilter(const char *file)
                     re = pcre_compile(&(_val[1]), PCRE_CASELESS, &error, &err_offs, NULL);
                     if (!re)
                     {
-                        stripper_game.log_message("File %s parse error (line %d):", file, line);
-                        stripper_game.log_message("Expression(%s): At pos %d, %s", _val, err_offs, error);
+                        Msg("[gmsv_stripper] File %s parse error (line %d):\n", file, line);
+                        Msg("[gmsv_stripper] Expression(%s): At pos %d, %s\n", _val, err_offs, error);
                         continue;
                     }
                 }
@@ -766,7 +768,7 @@ const char *Stripper::ToString()
         m_tostring[0] = '\0';
     m_tostring_len = 0;
 
-    std::list<std::list<ent_prop *> *>::iterator iter, end=m_props.end(), begin=m_props.begin();
+    [[maybe_unused]] std::list<std::list<ent_prop *> *>::iterator iter, end=m_props.end(), begin=m_props.begin();
     std::list<ent_prop *>::iterator eiter, eend;
     bool first = true;
 

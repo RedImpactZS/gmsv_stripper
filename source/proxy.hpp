@@ -11,15 +11,12 @@
 
 #pragma once
 
-#ifndef _INCLUDE_STRIPPER_MAIN_H_
-#define _INCLUDE_STRIPPER_MAIN_H_
+#ifndef _INCLUDE_STRIPPER_PROXY_H_
+#define _INCLUDE_STRIPPER_PROXY_H_
 
-class IServerGameDLL;
-class IServer;
-class IVEngineServer;
+namespace StripperProxy {
+    extern int Initialize();
+    extern void Uninitialize();
+};
 
-extern IServerGameDLL *gamedll;
-extern IServer *server;
-extern IVEngineServer *engine;
-
-#endif /* _INCLUDE_STRIPPER_MAIN_H_ */
+#endif /* _INCLUDE_STRIPPER_PROXY_H_ */

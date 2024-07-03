@@ -11,15 +11,15 @@
 
 #pragma once
 
-#ifndef _INCLUDE_STRIPPER_MAIN_H_
-#define _INCLUDE_STRIPPER_MAIN_H_
+#ifndef _INCLUDE_STRIPPER_INTERCOM_H_
+#define _INCLUDE_STRIPPER_INTERCOM_H_
 
-class IServerGameDLL;
-class IServer;
-class IVEngineServer;
+namespace StripperSupport {
 
-extern IServerGameDLL *gamedll;
-extern IServer *server;
-extern IVEngineServer *engine;
+    extern const char* originalMapEntities;
+    extern const char* newMapEntities;
 
-#endif /* _INCLUDE_STRIPPER_MAIN_H_ */
+    extern const char* parse_map(const char* map, const char* entities);
+}
+
+#endif /* _INCLUDE_STRIPPER_INTERCOM_H_ */
