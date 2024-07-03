@@ -48,6 +48,8 @@ GMOD_MODULE_OPEN()
 
     if (StripperProxy::Initialize()) {
         Msg("[gmsv_stripper] Successfully loaded. Will activate on next map\n");
+    } else {
+        Msg("[gmsv_stripper] Already loaded, skipping...\n");
     }
 
     return 0;
@@ -59,6 +61,6 @@ GMOD_MODULE_CLOSE( )
     StripperProxy::Uninitialize();
     StripperLua::Uninitialize(LUA);
 
-    Msg("[gmsv_stripper] Skipped unloading\n");
+    Msg("[gmsv_stripper] Module close acknowledged\n");
     return 0;
 }
